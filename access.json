@@ -1,0 +1,44 @@
+ {
+        "user": [
+            "dashboard",
+            "workspaces",
+            "Profile",
+            "notifications",
+            "paymentgateway",
+            "Bulksms"
+        ],
+        "workspace": [
+            "Overview",
+            "Transactions",
+            "notifications",
+            "Billing", 
+            "Members",
+            "Settings"
+        ],
+        "router": {
+            "overview": null,
+            "hotspot": [
+            "active",
+            "users", 
+            "profiles",
+            "setup"
+            ],
+            "ppoe": [
+            "active",
+            "users",
+            "profiles", 
+            "setup"
+            ],
+            "transactions": null,
+            "communication": [
+            "sms",
+            "notifications"
+            ],
+            "design": null,
+            "settings": [
+            "layer2",
+            "paymentgateway",
+            "Bulksms"
+            ]
+        }
+    }
