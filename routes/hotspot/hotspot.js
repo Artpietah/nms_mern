@@ -6,6 +6,7 @@ const { getHotspotUser, getHotspotUserById,createHotspotUser,updateHotspotUser,d
 const { getHotspotProfile,createHotspotProfile,updateHotspotProfile,deleteHotspotProfile} = require('../../controllers/hotspot/hotspotProfileController');
 const { getHotspotToken, createHotspotToken, updateHotspotToken, deleteHotspotToken } = require('../../controllers/hotspot/hotspotToken');
 const { verifyProfileCreator } = require('../../middleware/profileMiddleware');
+const { checkRouter } = require('../../middleware/routerMiddleware');
 
 router.get('/user',  getHotspotUser).post('/user', verifyToken, createHotspotUser);
 router.get('/user/:id', getHotspotUserById);
@@ -17,9 +18,9 @@ router.put('/profile/:id', verifyToken, verifyProfileCreator ,updateHotspotProfi
 router.delete('/profile/:id', verifyToken, verifyProfileCreator ,deleteHotspotProfile);
 
 // TODO: add middleware to verify token creator of workspace later
-router.get('token/',  getHotspotToken).post('token/', verifyToken, createHotspotToken);
-router.put('token/:id', verifyToken, updateHotspotToken);
-router.delete('token/:id', verifyToken, deleteHotspotToken);
+router.get('/token/',  getHotspotToken).post('/token/', verifyToken, checkRouter,createHotspotToken);
+router.put('/token/:id', verifyToken, updateHotspotToken);
+router.delete('/token/:id', verifyToken, deleteHotspotToken);
 
 module.exports = router;
 

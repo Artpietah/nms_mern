@@ -1,13 +1,13 @@
-const { get } = require('mongoose');
 const Router = require('../../models/routerModel');
 
-const creteRouter = async (req, res) => {
-    var name, description, workspaceId = req.body;
+const createRouter = async (req, res) => {
+    var {name, description, workspaceId} = req.body;
+    const createdBy = req.user._id
     if (!name || !workspaceId) {
         return res.status(400).json({ message: 'All fields are required' });
     }
     try {
-        const router = await Router.create({ name, description, workspaceId });
+        const router = await Router.create({ name, description, workspaceId, createdBy });
         res.status(201).json(router);
     } catch (error) {
         res.status(500).json({ message: 'Error creating router', error });
@@ -28,11 +28,11 @@ const getRouter= async (req, res) => {
     try {
         const profile = await Router.findById(id);
         if (!profile) {
-            return res.status(404).json({ message: 'Hotspot profile not found' });
+            return res.status(404).json({ message: 'Routernot found' });
         }
         res.status(200).json(profile);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching hotspot profile', error });
+        res.status(500).json({ message: 'Error fetching router', error });
     }
 };
 
@@ -63,4 +63,4 @@ const deleteRouter = async (req, res) => {
     }
 };  
 
-module.exports = { creteRouter, getAllRouters, getRouter, updateRouter, deleteRouter };
+module.exports = { createRouter, getAllRouters, getRouter, updateRouter, deleteRouter };

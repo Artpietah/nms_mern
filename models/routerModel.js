@@ -35,8 +35,7 @@ const routerSchema = new Schema({
         default: false
     },
     workspaceId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'WorkSpace',
+        type: String,
         required: true
     },
     model: {
@@ -48,12 +47,17 @@ const routerSchema = new Schema({
     lastseen: {
         type: Date
     },
+    bulkSms: [
+        {
+        
+            bulkSmsId: {
+                type : String,
+                required: true
+            }
+        }
+    ],
     paymentGateway: [
         {
-            name: {
-                type: String,
-                required: true
-            },
             paymentGatewayId: {
                 type : String,
                 required: true

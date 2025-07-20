@@ -45,9 +45,8 @@ const hotspotTokenSchema = new Schema({
         ref: 'Router',
         required: true
     },
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'HotspotUser',
+    phone: {
+        type: Number,
         required: true
     },
     isShared: {

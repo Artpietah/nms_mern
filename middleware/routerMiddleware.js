@@ -1,6 +1,5 @@
-const Router = require('../../models/routerModel');
+const Router = require('../models/routerModel');
 const {apiRequest} = require('../controllers/api/requestController');
-const router = require('../routes/hotspot/hotspot');
 
 
 const pingRouter = async (req, res, next) => {
@@ -18,4 +17,19 @@ const pingRouter = async (req, res, next) => {
      next();
 }
 
-module.exports = { pingRouter };
+const checkRouter = async (req, res, next) => {
+    const id  = req.routerId;
+    try {
+        const router = await Router.findById(id);
+        if (!router) {
+            return res.status(404).json({ message: 'Router not found' });
+        }
+        req.router = router;
+        next();
+    } catch (error) {
+        res.status(500).json({ message: 'Error checking router', error });
+    }
+}
+
+
+module.exports = { pingRouter, checkRouter};
