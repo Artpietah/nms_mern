@@ -26,21 +26,13 @@ const workspaceSchema = new Schema({
         type: Number,
         default: 0
     },
-    billing: {
-        amount: {
-            type: Number,
-            required: true
-        },
-        currency: {
-            type: String,
-            required: true
-        },
-        interval: {
-            type: String,
-            enum: ['day', 'week', 'month', 'year'],
-            default: 'month'
-        },
-        
+    maxRouters: {
+        type: Number,
+        default: 0
+    },
+    maxUsers: {
+        type: Number,
+        default: 0
     },
     members: [{
         userId: {
