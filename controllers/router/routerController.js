@@ -26,11 +26,25 @@ const getAllRouters = async (req, res) => {
 const getRouter= async (req, res) => {
     const { id } = req.params;
     try {
-        const profile = await Router.findById(id);
-        if (!profile) {
+        const router = await Router.findById(id);
+        if (!router) {
             return res.status(404).json({ message: 'Routernot found' });
         }
-        res.status(200).json(profile);
+        res.status(200).json(router);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching router', error });
+    }
+};
+const getRoutersByWorkspace= async (req, res) => {
+    const workspaceId = req.params.id;
+    console.log(workspaceId);
+    try {
+        const router = await Router.find({workspaceId:workspaceId});
+        console.log(router)
+        if (!router) {
+            return res.status(404).json({ message: 'Routernot found' });
+        }
+        res.status(200).json(router);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching router', error });
     }
@@ -63,4 +77,4 @@ const deleteRouter = async (req, res) => {
     }
 };  
 
-module.exports = { createRouter, getAllRouters, getRouter, updateRouter, deleteRouter };
+module.exports = { createRouter, getAllRouters, getRouter,getRoutersByWorkspace, updateRouter, deleteRouter };

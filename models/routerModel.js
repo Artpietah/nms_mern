@@ -35,7 +35,8 @@ const routerSchema = new Schema({
         default: false
     },
     workspaceId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'WorkSpace',
         required: true
     },
     model: {
