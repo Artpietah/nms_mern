@@ -26,6 +26,13 @@ const workspaceSchema = new Schema({
         type: Number,
         default: 0
     },
+    billing: {
+        type: Number,
+        default: 0
+    },
+    nextBilling: {
+        type: Date
+    },
     maxRouters: {
         type: Number,
         default: 0
