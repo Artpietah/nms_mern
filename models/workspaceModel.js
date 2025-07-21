@@ -27,8 +27,7 @@ const workspaceSchema = new Schema({
         default: 0
     },
     billing: {
-        type: Number,
-        default: 0
+        type: String
     },
     nextBilling: {
         type: Date
