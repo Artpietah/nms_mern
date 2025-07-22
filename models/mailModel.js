@@ -33,4 +33,4 @@ const mailSchema = new Schema({
     timestamps: true
 });
 
-const Mail = mongoose.model('Mail', mailSchema);
+module.exports = mongoose.model('Mail', mailSchema);
