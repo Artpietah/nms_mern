@@ -7,6 +7,7 @@ const hotspotUserRoutes = require('./routes/hotspot/hotspot');
 const workspaceRoutes = require('./routes/workspace/workspace');
 const userRoutes = require('./routes/user/userRoute');
 const routerRoutes = require('./routes/router/router');
+const accessRoutes = require('./access');
 
 const port = process.env.PORT || 3000;
 
@@ -19,6 +20,10 @@ app.use('/api/hotspot', hotspotUserRoutes)
 app.use('/api/workspace', workspaceRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/router', routerRoutes)
+app.use('/api/access', (req, res) =>{
+    res.json(accessRoutes)  
+}
+)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
