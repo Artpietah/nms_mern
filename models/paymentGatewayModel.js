@@ -87,9 +87,8 @@ const  mpesaSchema = new Schema({
 });
 
 const Kopokopo = mongoose.model('Kopokopo', kopokopoSchema);
-const MpesaBuyGoods = mongoose.model('MpesaBuyGoods', mpesaBuyGoodsSchema);
-const MpesaPaybill = mongoose.model('MpesaPaybill', mpesaPaybillSchema);
+const Mpesa = mongoose.model('MpesaBuyGoods', mpesaSchema);
 module.exports = {
     Kopokopo,
-    mpesaSchema
+    Mpesa
 };
