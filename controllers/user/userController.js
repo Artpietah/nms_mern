@@ -1,5 +1,6 @@
 const User = require('../../models/userModel');
 const Workspace = require('../../models/workspaceModel');
+const { sendMail } = require('../com/mailController');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -91,7 +92,7 @@ const deleteUser = async (req, res) => {
 }
 const loginUser = async (req, res, next) => {
     const { email, password } = req.body;
-
+     
     // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
@@ -109,6 +110,17 @@ const loginUser = async (req, res, next) => {
     user.lastSeen = new Date();
     await user.save();
     // Set user status to active
+    // try and send email
+    sendMail({
+        from: "netgoprokenya@gmail",
+        to: "artpietah@gmail",
+        subject: 'Login successful',
+        body: `You have logged in successfully at ${new Date()}`
+    },{
+        username: "netgoprokenya@gmail",
+        password: "!@#!@#Art321"
+    })
+
     next();
 }
 

@@ -1,4 +1,5 @@
 const apiRequest = require('../api/requestController');
+const Sms = require('../../models/smsModel');
 const WorkSpace = require('../../models/workspaceModel');
 
 
@@ -24,6 +25,13 @@ const sendSMS = async (contacts, message) => {
         }
          
         // Optionally, charge the workspace or user here using the cost
+        // save sms to db
+        const sms = new Sms({ 
+            phoneNumber: contact,
+            message });
+        await sms.save();
     }
     // return cost;
 };
+
+module.exports = { sendSMS };

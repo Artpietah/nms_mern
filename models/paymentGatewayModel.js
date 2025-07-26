@@ -39,7 +39,7 @@ const kopokopoSchema = new Schema({
     timestamps: true
 });
 
-const  mpesaBuyGoodsSchema = new Schema({
+const  mpesaSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -51,8 +51,8 @@ const  mpesaBuyGoodsSchema = new Schema({
         type: String,
         required: true
     },
-    tillNumber: {
-        type: String,
+    partyB: {
+        type: Number,
         required: true
     },
     consumerKey: {
@@ -67,51 +67,14 @@ const  mpesaBuyGoodsSchema = new Schema({
         type: String,
         required: true
     },
-    workspaceId: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'WorkSpace',
+        ref: 'User',
         required: true
     },
-    status: {
+    type: {
         type: String,
-        enum: ['active', 'inactive'],
-        default: 'active'
-    }
-}, {
-    timestamps: true
-});
-
-const mpesaPaybillSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-    },
-    shortCode: {
-        type: String,
-        required: true
-    },
-    paybill: {
-        type: String,
-        required: true
-    },
-    consumerKey: {
-        type: String,
-        required: true
-    },
-    consumerSecret: {
-        type: String,
-        required: true
-    },
-    passKey: {
-        type: String,
-        required: true
-    },
-    workspaceId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'WorkSpace',
+        enum: ['paybill', 'till'],
         required: true
     },
     status: {
@@ -128,6 +91,5 @@ const MpesaBuyGoods = mongoose.model('MpesaBuyGoods', mpesaBuyGoodsSchema);
 const MpesaPaybill = mongoose.model('MpesaPaybill', mpesaPaybillSchema);
 module.exports = {
     Kopokopo,
-    MpesaBuyGoods,
-    MpesaPaybill
+    mpesaSchema
 };

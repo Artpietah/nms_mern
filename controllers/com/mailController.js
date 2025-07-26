@@ -4,7 +4,9 @@ const sendMail = async (mail, auth) => {
     const maillist = Array.isArray(mail.email) ? mail.email : [mail.email];
 
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
         auth: {
             user: auth.username,
             pass: auth.password
